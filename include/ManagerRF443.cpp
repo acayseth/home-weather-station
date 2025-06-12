@@ -1,13 +1,11 @@
-#pragma once
-
 #include <RH_ASK.h>
 #include <SPI.h>
 
 enum RH_Place
 {
-    UNDEFINED = 0,
-    IN_SIDE = 'in_side',
-    OUT_SIDE = 'out_side',
+    IN_SIDE = 0,
+    OUT_SIDE = 1,
+    UNDEFINED = 2,
 };
 
 typedef struct CBData
@@ -86,7 +84,7 @@ public:
 
         set_data(temperature, humidity, pressure, is_low_battery);
 
-        if (!rf443.send((uint8_t *)&get_data(), sizeof(Package)) or !rf443.waitPacketSent())
+        if (!rf443.send((uint8_t *)&data, sizeof(Package)) or !rf443.waitPacketSent())
         {
             memset(&data, 0, sizeof(Package));
             clean();

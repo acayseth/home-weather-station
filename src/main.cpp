@@ -2,7 +2,7 @@
 #include <ManagerRF443.cpp>
 #include <LowPower.h>
 
-#define SENSOR_PLACE OUT_SIDE // IN_SIDE
+#define SENSOR_PLACE OUT_SIDE
 
 #define DHT_PIN 2
 #define DHT_TYPE DHT22

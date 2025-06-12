@@ -15,7 +15,7 @@ typedef struct CBData
     RH_Place place;
     int8_t temperature;
     uint8_t humidity;
-    uint8_t pressure;
+    float pressure;
     bool is_low_battery;
 } Package;
 
@@ -41,10 +41,15 @@ private:
     }
 
 public:
-    ManagerRF443(uint8_t pin, bool is_transmitter)
+    ManagerRF443(uint8_t pin, bool is_transmitter, RH_Place place)
     {
         uint8_t rx_pin = 255;
         uint8_t tx_pin = 255;
+
+        if (place != UNDEFINED)
+        {
+            this->place = place;
+        }
 
         if (is_transmitter)
             tx_pin = pin;

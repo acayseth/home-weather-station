@@ -8,10 +8,9 @@
 #define DHT_TYPE DHT22
 
 #define RF443_PIN 12
-#define RF443_TRANSMITTER true
 
 ManagerWeather weather(DHT_PIN, DHT_TYPE);
-ManagerRF443 rf443(RF443_PIN, RF443_TRANSMITTER, SENSOR_PLACE);
+ManagerRF443 rf443(RF443_PIN, SENSOR_PLACE);
 
 void setup()
 {

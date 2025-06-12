@@ -39,13 +39,15 @@ private:
     }
 
 public:
-    ManagerRF443(uint8_t pin, bool is_transmitter, RH_Place place)
+    ManagerRF443(uint8_t pin, RH_Place place)
     {
+        bool is_transmitter = false; 
         uint8_t rx_pin = 255;
         uint8_t tx_pin = 255;
 
         if (place != UNDEFINED)
         {
+            is_transmitter = true;
             this->place = place;
         }
 

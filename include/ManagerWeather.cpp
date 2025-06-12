@@ -22,7 +22,7 @@ public:
 
         if (isnan(value))
         {
-            return 255;
+            return NAN;
         }
 
         return static_cast<int8_t>(round(value));
@@ -34,7 +34,7 @@ public:
 
         if (isnan(value))
         {
-            return 255;
+            return NAN;
         }
 
         return static_cast<uint8_t>(round(value));
@@ -54,7 +54,7 @@ public:
 
         if (isnan(value))
         {
-            return 255;
+            return NAN;
         }
 
         return static_cast<uint32_t>(round(value));

@@ -23,15 +23,17 @@ void loop()
 {
   int8_t temperature = weather.readTemperature();
   uint8_t humidity = weather.readHumidity();
-  
-  bool is_low_battery = false;
+
   float pressure = 0;
 
   if (SENSOR_PLACE == OUT_SIDE) {
     pressure = weather.readPressure();
   }
 
-  rf443.transmitter(temperature, humidity, pressure, is_low_battery);
+  if (!isnan(temperature) && !isnan(humidity) && !isnan(pressure))
+  {
+    rf443.transmitter(temperature, humidity, pressure); 
+  }
 
   LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);

@@ -1,18 +1,18 @@
-#include <Arduino.h>
+#include <ManagerDHT.cpp>
 
-// put function declarations here:
-int myFunction(int, int);
+#define DHT_PIN 2
+#define DHT_TYPE DHT22
+
+ManagerDHT dht(DHT_PIN, DHT_TYPE);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(9600);
+  dht.begin();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  
+
+  delay(2000);
 }

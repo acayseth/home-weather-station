@@ -7,7 +7,7 @@ enum RH_Place
 {
     UNDEFINED = 0,
     IN_SIDE = 'in_side',
-    OUT_DOOR = 'out_side',
+    OUT_SIDE = 'out_side',
 };
 
 typedef struct CBData
@@ -76,7 +76,7 @@ public:
         data.is_low_battery = false;
     }
 
-    bool transmitter(int8_t temperature, uint8_t humidity, bool pressure = 0, bool is_low_battery = false)
+    bool transmitter(int8_t temperature, uint8_t humidity, float pressure = 0, bool is_low_battery = false)
     {
         if (place == UNDEFINED)
         {

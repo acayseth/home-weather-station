@@ -7,26 +7,6 @@ private:
     DHT dht;
     Adafruit_BMP085 bmp;
 
-    int8_t cast_int(float value)
-    {
-        if (isnan(value))
-        {
-            return 255;
-        }
-
-        return static_cast<int8_t>(round(value));
-    }
-
-    uint8_t cast_uint(float value)
-    {
-        if (isnan(value))
-        {
-            return 255;
-        }
-
-        return static_cast<uint8_t>(round(value));
-    }
-
 public:
     ManagerWeather(uint8_t pin, uint8_t type) : dht(pin, type) {}
 
@@ -38,12 +18,26 @@ public:
 
     int8_t readTemperature()
     {
-        return cast_int(dht.readTemperature());
+        float value = dht.readTemperature();
+
+        if (isnan(value))
+        {
+            return 255;
+        }
+
+        return static_cast<int8_t>(round(value));
     }
 
     uint8_t readHumidity()
     {
-        return cast_uint(dht.readHumidity());
+        float value = dht.readHumidity();
+
+        if (isnan(value))
+        {
+            return 255;
+        }
+
+        return static_cast<uint8_t>(round(value));
     }
 
     float readPressure(uint32_t altitude_meters = 0)
@@ -63,6 +57,6 @@ public:
             return 255;
         }
 
-        return value;
+        return static_cast<uint32_t>(round(value));
     }
 };

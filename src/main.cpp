@@ -2,7 +2,7 @@
 #include <ManagerRF443.cpp>
 #include <LowPower.h>
 
-#define SENSOR_PLACE IN_SIDE
+#define SENSOR_PLACE OUT_SIDE // IN_SIDE
 
 #define DHT_PIN 2
 #define DHT_TYPE DHT22
@@ -24,8 +24,13 @@ void loop()
 {
   int8_t temperature = weather.readTemperature();
   uint8_t humidity = weather.readHumidity();
-  float pressure = weather.readPressure();
+  
   bool is_low_battery = false;
+  float pressure = 0;
+
+  if (SENSOR_PLACE == OUT_SIDE) {
+    pressure = weather.readPressure();
+  }
 
   rf443.transmitter(temperature, humidity, pressure, is_low_battery);
 
